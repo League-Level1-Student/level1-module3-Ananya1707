@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -24,7 +25,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
 	 * 
-	 * 1. Make the frame respond to mouse clicks.
+	 * 1. Make the frame respond to mouse click 
 	 * 
 	 * 2. When the mouse is clicked, use the Media Palace (read the code in the magic_box package) to play sounds, 
 	 *    show images or speak.
@@ -36,6 +37,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	 *   
 	 *     
 	 */
+	
 
 	BufferedImage backgroundImage;
 
@@ -57,6 +59,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addMouseListener(this);
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -76,6 +79,21 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		MediaPalace m = new MediaPalace();
+		if(backgroundImage.getRGB(e.getX(), e.getY()) == -69429) {
+			try {
+				m.loadImageFromTheInternet("https://lh3.googleusercontent.com/proxy/0pLekfBqM1ZbsOWXuh8-IgmdMshNpr5iqT89NSgat-dYxd3N1ckz4KoQcS6Umin7c-qaNRCkldu8ZTiosELI2uB9eJ7rN-I");
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}	
+		}
+		//System.out.println(backgroundImage.getRGB(e.getX(), e.getY()));
+		
+		
+		//m.loadImageFromWithinProject("money.jpg");
+		//m.loadImageFromHardDrive()
+		
 		
 	}
 
